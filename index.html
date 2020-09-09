@@ -79,11 +79,22 @@ const cards = [
 
 document.querySelector('#keycard').innerHTML = shuffle(cards).map((card) => `<div class="${card}">${card}</div>`).join('');
 
+function getSeed() {
+	let params = new URLSearchParams(document.location.search.substring(1));
+	let seed = params.get("seed");
+	if (null !== seed) {
+		// Return value from URL parameter 'seed'.
+		return seed;
+	}
+	// Return today's Date and time.
+	let date = new Date();
+	return date.toISOString();
+}
 
 // https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 function shuffle(array) {
 	var currentIndex = array.length, temporaryValue, randomIndex;
-	var myrng = new Math.seedrandom('My seed string');
+	var myrng = new Math.seedrandom(getSeed());
 
 	// While there remain elements to shuffle...
 	while (0 !== currentIndex) {
