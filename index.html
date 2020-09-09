@@ -1,0 +1,103 @@
+<html>
+	<head>
+		<title>Codenames Key Card</title>
+		<style>
+			body {
+				font-size: 24px;
+			}
+			#keycard {
+				display: grid;
+				grid-template-columns: 20% 20% 20% 20% 20%;
+				grid-template-rows: 20% 20% 20% 20% 20%;
+				height: 600px;
+				margin: 20px auto;
+				text-transform: capitalize;
+				width: 800px;
+			}
+			#keycard>div {
+				border: 1px solid black;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+			.bystander { background-color: yellow; }
+			.red { background-color: red; }
+			.blue { background-color: cornflowerblue; }
+			.assassin { background-color: dimgray; }
+		</style>
+	</head>
+	<body>
+		<div id="keycard">
+			<div class="bystander">Bystander</div>
+			<div class="red">Red</div>
+			<div class="assassin">Assassin</div>
+			<div class="red">Red</div>
+			<div class="blue">Blue</div>
+
+			<div class="red">Red</div>
+			<div class="red">Red</div>
+			<div class="bystander">Bystander</div>
+			<div class="blue">Blue</div>
+			<div class="blue">Blue</div>
+
+			<div class="red">Red</div>
+			<div class="blue">Blue</div>
+			<div class="red">Red</div>
+			<div class="red">Red</div>
+			<div class="bystander">Bystander</div>
+
+			<div class="red">Red</div>
+			<div class="blue">blue</div>
+			<div class="red">red</div>
+			<div class="red">red</div>
+			<div class="bystander">bystander</div>
+		</div>
+		<script>
+const cards = [
+	'assassin',
+	'blue',
+	'blue',
+	'blue',
+	'blue',
+	'blue',
+	'blue',
+	'blue',
+	'bystander',
+	'bystander',
+	'bystander',
+	'bystander',
+	'red',
+	'red',
+	'red',
+	'red',
+	'red',
+	'red',
+	'red',
+	'red',
+];
+
+document.querySelector('#keycard').innerHTML = shuffle(cards).map((card) => `<div class="${card}">${card}</div>`).join('');
+
+// https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+function shuffle(array) {
+	var currentIndex = array.length, temporaryValue, randomIndex;
+
+	// While there remain elements to shuffle...
+	while (0 !== currentIndex) {
+
+		// Pick a remaining element...
+		randomIndex = Math.floor(Math.random() * currentIndex);
+		currentIndex -= 1;
+
+		// And swap it with the current element.
+		temporaryValue = array[currentIndex];
+		array[currentIndex] = array[randomIndex];
+		array[randomIndex] = temporaryValue;
+	}
+
+	return array;
+}
+		</script>
+	</body>
+</html>
+
